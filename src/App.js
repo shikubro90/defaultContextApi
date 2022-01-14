@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import Section from './component/Section';
+import createContext from './component/themeContext';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+
+  state = {
+    theme : 'dark',
+    switchTheme : ()=>(
+        this.setState((prevState)=>{
+          return prevState.theme === 'dark' ? {theme : 'light'} : {theme : 'dark'}
+        }))
+    
+  }
+
+
+
+
+  render(){
+
+    return (
+      <div>
+        <createContext.Provider value={this.state}>
+        <Section/>
+        </createContext.Provider>
+      </div>
+    );
+  }
+
 }
 
 export default App;
